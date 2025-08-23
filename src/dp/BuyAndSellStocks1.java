@@ -1,6 +1,6 @@
 package dp;
 
-class Solution {
+class Solution121 {
     public int maxProfit(int[] nums) {
         int profit = 0;
         int price = Integer.MAX_VALUE;
