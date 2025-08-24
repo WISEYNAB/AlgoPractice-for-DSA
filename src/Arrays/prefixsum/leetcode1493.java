@@ -31,3 +31,36 @@ class Solution {
 }
 
 //optimal prefix sum
+
+class Solution1493 {
+    public int longestSubarray(int[] nums) {
+        int n = nums.length;
+        int[] left = new int[n];
+        int[] right = new int[n];
+        int maxlen = 0;
+
+        for(int i = 0;i < n;i++){
+            if(nums[i] == 1){
+                left[i] = ((i > 0) ? left[i - 1] : 0) + 1;
+            } else {
+                left[i] = 0;
+            }
+        }
+
+        for(int i = n - 1;i >= 0;i--){
+            if(nums[i] == 1){
+                right[i] = ((i < n - 1) ? right[i + 1] : 0) + 1;
+            } else {
+                right[i] = 0;
+            }
+        }
+
+        for(int i = 0;i < n;i++){
+            int leftc = (i > 0) ? left[i - 1] : 0;
+            int rightc = (i < n - 1) ? right[i + 1] : 0;
+            maxlen = Math.max(maxlen,leftc + rightc);
+        }
+
+        return maxlen == n ? n - 1 : maxlen;
+    }
+}
