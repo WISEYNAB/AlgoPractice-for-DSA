@@ -64,3 +64,30 @@ class Solution1493 {
         return maxlen == n ? n - 1 : maxlen;
     }
 }
+
+//sliding window
+
+class Solution1493sw {
+    public int longestSubarray(int[] nums) {
+        int n = nums.length;
+        int maxlen = 0;
+        int right = 0,left = 0,zeros = 0;
+
+        for(;right < n;right++){
+            if(nums[right] == 0) zeros++;
+
+            while(zeros > 1){
+                if(nums[left] == 0){
+                    zeros--;
+                }
+
+                left++;
+            }
+
+            maxlen = Math.max(maxlen,right - left);
+        }
+
+
+        return maxlen;
+    }
+}
