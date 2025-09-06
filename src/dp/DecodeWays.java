@@ -34,3 +34,32 @@ class Solution91 {
         return dp[i] = result;
     }
 }
+
+
+class Solution91Bottomup {
+    int n;
+    int[] dp;
+    public int numDecodings(String s) {
+        n = s.length();
+        dp = new int[n + 1];
+        Arrays.fill(dp,-1);
+        char[] st = s.toCharArray();
+
+        dp[n] = 1;
+        for(int i = n-1;i >= 0;i--){
+            if(st[i] == '0'){
+                dp[i] = 0;
+                continue;
+            }
+            int res = dp[i + 1];
+            if(i + 1 < n){
+                if(st[i] == '1' || st[i] == '2' && st[i + 1] < '7'){
+                    res += dp[i + 2];
+                }
+            }
+
+            dp[i] = res;
+        }
+        return dp[0];
+    }
+}
