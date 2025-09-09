@@ -34,3 +34,30 @@ class Solution2327 {
         return dp[day] = result;
     }
 }
+
+class SolutionBUp {
+    int[] dp;
+    int m;
+    public int peopleAwareOfSecret(int n, int delay, int forget) {
+        int total = 0;
+        m = 1000000007;
+        dp = new int[n + 1];
+        dp[1] = 1;
+        for (int day = 2; day <= n; day++) {
+            int result = 0;
+            for (int j = day - forget + 1; j <= day - delay; j++) {
+                if (j > 0) {
+                    result = (result + dp[j]) % m;
+                }
+            }
+            dp[day] = result;
+        }
+        for (int i = n - forget + 1; i <= n; i++) {
+            if (i > 0) {
+                total = (total + dp[i]) % m;
+            }
+        }
+
+        return total;
+    }
+}
