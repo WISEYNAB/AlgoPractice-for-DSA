@@ -27,3 +27,19 @@ class Solution {
         return memo[i][j] = tri.get(i).get(j) + Math.min(same, next);
     }
 }
+//bottom up
+
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        List<List<Integer>> ans = triangle;
+        int n = triangle.size();
+        for (int row = n - 2; row >= 0; row--) {
+            for (int col = 0; col <= row; col++) {
+                ans.get(row).set(col,ans.get(row).get(col) + Math.min(
+                        ans.get(row + 1).get(col), ans.get(row + 1).get(col + 1)));
+            }
+        }
+
+        return ans.get(0).get(0);
+    }
+}
