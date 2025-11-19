@@ -1,4 +1,4 @@
-package Arrays.stacks;
+package stacks;
 import java.util.*;
 
 class Solution {
